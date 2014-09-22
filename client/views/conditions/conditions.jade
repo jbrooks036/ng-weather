@@ -1,12 +1,19 @@
-h4 {{title}}
+.row
+  .col-xs-12
+    h3 {{title}}
 .row
   .col-xs-3
     form(novalidate, role='form', name='conditionsForm')
       .form-group
         label(for='zip') Zip Code
         input.form-control#name(ng-pattern='/^[0-9]{5}$/', required, ng-model='zip', type='text', name='zip', autofocus)
+      .form-group
        button.btn.btn-success(ng-show='conditionsForm.$valid', ng-click='getConditions()') Get Conditions
   .col-xs-9
-    p {{temperature}}
-    p {{relHumidity}}
-    img(src='{{icon}}')
+.row(ng-show='conditions')
+  .col-xs-3
+    .panel.panel-default
+      .panel-body
+        h4 {{conditions.temp_f}} &deg;F
+        img(ng-src='{{conditions.icon_url}}')
+  .col-xs-9
